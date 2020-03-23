@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux";
 import Nav from "./Elements/Nav";
 import Footer from "./Elements/Footer";
 import GlobalLoader from "./Elements/Loader/GloabalLoader";
+import Banner from './Elements/Banner';
 
 interface Props extends RouteComponentProps<{}, {}>
 {
@@ -21,8 +22,9 @@ class App extends React.PureComponent<Props, {}>
 	constructor(props)
 	{
 		super(props);
-		const { location, history } = props
-    const params = new URLSearchParams(location.search)
+		const { location, history } = props;
+		
+    const params = new URLSearchParams(location.search);
     
     // @todo - handle any authentication here
 	}
@@ -41,10 +43,16 @@ class App extends React.PureComponent<Props, {}>
 	public render()
 	{
 		const { app } = this.props;
+		const bannerProps = {
+			img: '../images/top-banner.svg',
+			imgTitle: 'banner image',
+			slogan:  'Help healthcare workers with proper medical supplies to fight COVID-19'
+		};
 		return (
 			app.dataSource ? (
 				<div className={styles.main}>
 					<Nav />
+					<Banner {...bannerProps} />
 					{this.props.children}
 					<Footer />
 					{app.loading ? <GlobalLoader size='large' /> : null}

@@ -33,11 +33,11 @@ class Nav extends React.PureComponent<Props, State>
   renderGlobalNav = () => {
     return (
       <div className={`${styles.elementsNav} ${styles.transparent}`}>
-        <div onClick={() => this.props.history.push(URLS.CLINICS)} className={styles.left}>
+        <div className={styles.logo} onClick={() => this.props.history.push(URLS.CLINICS)} >
           <IconLogoOrange />
         </div>
         <div className={`${styles.globalTitle}`}>
-          <span className={`${styles.title}`}>{Message('GLOBAL_TITLE')}</span>‚
+          <span className={`${styles.title}`}>{Message('GLOBAL_TITLE')}</span>
           <span className={`${styles.text}`}>{Message('GLOBAL_TITLE_TEXT')}</span>
         </div>
       </div>

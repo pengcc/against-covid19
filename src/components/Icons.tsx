@@ -38,6 +38,8 @@ export const IconLogoOrange = Icon(require('../images/icons/logo-orange.svg'));
 export const IconLogoWhite = Icon(require('../images/icons/logo-white.svg'));
 export const IconMainIcon = Icon(require('../images/icons/icon.svg'));
 export const IconMainIconWhite = Icon(require('../images/icons/icon-white.svg'));
+export const IconTopBanner = Icon(require('../images/icons/top-banner.svg'));
+
 
 export enum IconNames
 {

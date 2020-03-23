@@ -1,6 +1,10 @@
 import { ILocalization } from './interface';
 
 const zh_CN: ILocalization = {
+  GLOBAL_TITLE: 'COVID-19',
+  GLOBAL_TITLE_TEXT: 'Medical supply tracker',
+  GLOBAL_SLOGAN: 'Help healthcare workers with proper medical supplies to fight COVID-19',
+  
   ADDRESS: '地址',
   AMOUNT: '数量',
 
