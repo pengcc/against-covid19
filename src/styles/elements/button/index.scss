@@ -1,0 +1,37 @@
+@import '../../colors';
+
+.ant-btn-link {
+  color: $white !important;
+
+  &.main {
+    color: $main6 !important;
+  }
+}
+
+.ant-btn-primary {
+  background-color: $main6 !important;
+  border-color: $main6 !important;
+
+  &:hover, &:focus {
+    background-color: $main3 !important;
+    border-color: $main3 !important;
+  }
+
+  &:active {
+    background-color: $main_dark !important;
+    border-color: $main_dark !important;
+  }
+}
+
+.ant-btn-ghost {
+  color: $main6 !important;
+  border-color: $main6 !important;
+}
+.fakeDisabled {
+  background-color: $white !important;
+  cursor: default !important;
+}
+
+.black {
+  color: $black0 !important;
+}
