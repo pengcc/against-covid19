@@ -43,16 +43,11 @@ class App extends React.PureComponent<Props, {}>
 	public render()
 	{
 		const { app } = this.props;
-		const bannerProps = {
-			img: '../images/top-banner.svg',
-			imgTitle: 'banner image',
-			slogan:  'Help healthcare workers with proper medical supplies to fight COVID-19'
-		};
 		return (
 			app.dataSource ? (
 				<div className={styles.main}>
 					<Nav />
-					<Banner {...bannerProps} />
+					<Banner />
 					{this.props.children}
 					<Footer />
 					{app.loading ? <GlobalLoader size='large' /> : null}

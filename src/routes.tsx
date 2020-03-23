@@ -7,6 +7,7 @@ import ClinicList from './components/Pages/Clinic/List';
 
 export default (store: Store<any>) => (
   <App>
+    <Route exact path={URLS.HOME} component={ClinicList} />
     <Route exact path={URLS.CLINIC} component={ClinicList} />
     <Route exact path={URLS.CLINICS} component={ClinicList} />
   </App>

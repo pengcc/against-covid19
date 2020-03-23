@@ -1,0 +1,22 @@
+@import '../../colors';
+@import '../../media';
+@import '../../fonts';
+@import '../../library';
+
+$bannerNamespace: 'bannerBlock';
+
+.#{$bannerNamespace} {
+    .bannerImage {
+        position: relative;
+        height: 270px;
+
+        svg {
+            @extend %absolute-h-center;
+        }
+    }
+
+    .slogan {
+        text-align: center;
+        padding: 2px 10px;
+    }
+}
