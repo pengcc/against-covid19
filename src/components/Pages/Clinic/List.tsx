@@ -76,50 +76,55 @@ class ClinicList extends React.PureComponent<Props, State>
 	onDrawerClose = () => {
 		this.setState({selectedClinic: undefined});
 	}
-
+	handleCityChange = (val) => {}
+	handleSupplyTypeChange = (val) => {};
+	handleRequestTypeChange = (val) => {};
+	renderSelect = (styleId='', data=[{key: '', option: ''}], prefix='', defaultText='', handler=(x) => {}) => {
+		return (
+			<Select
+				className={styles[styleId]}
+				defaultValue='0'
+				onChange={handler}>
+				<Option key='0' value='0'>{defaultText}</Option>
+				{data.map((d, index) => {
+					let {key = '', option = ''} = d;
+					return (
+						<Option key={`${prefix}${index}`} value={key}>{option}</Option>
+					);
+				})}
+			</Select>
+		);
+	};
 	render() {
-		const {clinicList, clinicsState} = this.props;
+		const {clinicsState} = this.props;
+		const mockData = {
+			clinicList: [],
+			cities: [],
+			supplyTypes: [],
+			requestTypes: []
+		};
+
+		const { clinicList, cities, supplyTypes, requestTypes } = mockData;
+
+		
 		return (
 			<Layout style={{backgroundColor: '#fff', flex: '1 0 auto', minHeight: 'unset'}}>
 				<Content>
 					<div className={styles.pageClinicList}>
-						<header>
-							<div className={styles.title}>{Message('CLINIC_PAGE_TITLE')}</div>
-						</header>
 						<section className={styles.filters}>
 							<Row type='flex' justify='center'
 								gutter={[{ xs: 11, sm: 11, md: 20, lg: 20 }, { xs: 13, sm: 13, md: 20, lg: 20 }]}>
 								<Col lg={3} md={3} sm={12} xs={12}>
-									<Select
-										className={styles.cityFilter}
-										defaultValue='1'>
-										{[{key:'1', name: '全部省份'}, {key: '2', name: '湖北省'}].map((d, index) => {
-											return (
-												<Option key={`province_option_${index}`} value={d.key}>{d.name}</Option>
-											);
-										})}
-									</Select>
+									{this.renderSelect('cityFilter', cities, 'city_', 'Select city', this.handleCityChange)}
 								</Col>
 								<Col lg={3} md={3} sm={12} xs={12}>
-									<Select
-										onChange={this.onCityFilterChange}
-										className={styles.cityFilter}
-										defaultValue={clinicsState.cityList[0].key}>
-										{clinicsState.cityList.map((d, index) => {
-											return (
-												<Option key={`city_option_${index}`} value={d.key}>{d.name}</Option>
-											);
-										})}
-									</Select>
+									{this.renderSelect('supplyType', supplyTypes, 'supply_type_', 
+										'Select supply type', this.handleSupplyTypeChange)}
 								</Col>
-                <Col lg={6} md={12} sm={24} xs={24}>
-                  <Search
-                    placeholder={this.props.intl.formatMessage({
-                      id: "SEARCH_CLINIC"
-                    })}
-                    onSearch={this.onClinicSearch}
-                  ></Search>
-                </Col>
+								<Col lg={6} md={12} sm={24} xs={24}>
+									{this.renderSelect('requestType', requestTypes, 'request_type_', 
+										'Select supply type', this.handleRequestTypeChange)}
+								</Col>
 							</Row>
 						</section>
 						<section className={styles.listWrapper}>
