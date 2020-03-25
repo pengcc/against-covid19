@@ -69,6 +69,34 @@ class ClinicDetails extends React.PureComponent<Props, {}>
     const {clinic} = this.props;
     return `Published ${clinic?.isVerified ? 'and verified by volunteer' : ''}a few hours ago`;
   }
+
+  handleReportOnClick = (): any => {}
+
+  handleShareOnClick = (): any => {}
+
+  handleDonateOnClick = (): any => {}
+
+  renderButtonRow = (): any => {
+    const buttonList = [
+      {name: 'report', handler: this.handleReportOnClick}, 
+      {name: 'share', handler: this.handleShareOnClick}, 
+      {name: 'donate', handler: this.handleDonateOnClick}
+    ];
+    return buttonList.map((item, index) => {
+      const {name, handler} = item;
+      return (
+        <Col key={index}>
+          <Button
+            onClick={handler}
+            style={styles[name]}
+            type='ghost'
+            shape='round'>
+              {Message(`BUTTON_${name.toUpperCase()}`)}
+            </Button>
+        </Col>
+      )
+    });
+  }
 	render()
 	{
     const {clinic} = this.props;
@@ -116,7 +144,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
                       </div> :
                       (<>
                         <div className={styles.noInstruction}>
-                          {Message('NO_DELIVERY_INSTRUCTION')}
+                          {Message('NO_DELIVERY_INSTRUCTIONS')}
                         </div>
                         <div className={styles.deliveryRecommendation}>
                           {Message('DELIVERY_RECOMMENDATION')}
@@ -124,8 +152,10 @@ class ClinicDetails extends React.PureComponent<Props, {}>
                         </>)
                     }
                   </div>
-
               </Col>
+            </Row>
+            <Row>
+                {this.renderButtonRow()}
             </Row>
 					</div>}
 				</Content>
