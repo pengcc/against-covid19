@@ -7,18 +7,16 @@ import { IClinic } from '../../types/interfaces';
 const SUFFIX = '__CLINICS';
 
 @typeName('UPDATE_LIST' + SUFFIX)
-export class UpdateClinicListActions extends StrongAction { constructor(public list: IClinic[]) { super(); }}
+export class UpdateClinicListActions extends StrongAction { constructor(public demandsList: IClinic[]) { super(); }}
 
 @typeName('UPDATE_CITY' + SUFFIX)
-export class UpdateCityAction extends StrongAction { constructor(public value: number) {super(); }}
+export class UpdateCityAction extends StrongAction { constructor(public value: string) {super(); }}
 
-// @todo - we could remove this action if cities/districts is returned from backend, right now
-// we have to parse them and add to state treemanually
-@typeName('ADD_CITY' + SUFFIX)
-export class AddCityAction extends StrongAction { constructor(public city: any) { super(); }}
+@typeName('UPDATE_SUPPLY_TYPE' + SUFFIX)
+export class UpdateSupplyTypeAction extends StrongAction { constructor(public value: string) {super(); }}
 
-@typeName('SEARCH_CLINIC' + SUFFIX)
-export class SearchClinicAction extends StrongAction { constructor(public searchText: string) { super(); }}
+@typeName('UPDATE_REQUEST_TYPE' + SUFFIX)
+export class UpdateRequestTypeAction extends StrongAction { constructor(public value: string) {super(); }}
 
 @typeName('RESET' + SUFFIX)
 export class ResetAction extends StrongAction { constructor() { super(); }}
@@ -28,42 +26,26 @@ export interface Actions
 {
   fetchClinicList(list: any[]);
   updateCity(value: number);
-  addCity(city: any);
-  searchClinic(searchText: string);
+  updateSupplyType(value: number);
+  updateRequestType(value: number);
 }
 
 
 export const actionCreators = {
-  fetchClinicList: (list: any[]): any => async (dispatch) => {
+  fetchClinicList: (link: string): any => async (dispatch) => {
     dispatch(new ResetAction());
     dispatch(appActionCreators.toggleAppLoading(true));
-    try
-    {
-      const promises: any[] = [];
-      list.forEach((link, index) => {
-        const promise = getClinics(link).then((result) => {
-          dispatch(new AddCityAction({key: index, name: result[0].city}));
-          return result.map((item) => {return {...item, cityKey: index};});
-        }).catch(() => []);;
-        promises.push(promise);
-      });
-
-      const result = await Promise.all(promises);
-      let clinics = [];
-      result.forEach((l) => clinics = clinics.concat(l));
-      dispatch(new UpdateClinicListActions(clinics));
-      // dispatch(new UpdateClinicListActions(mockClinics));
-    }
-    catch (err)
-    {
+    try {
+      getClinics(link).then((result) => {
+        dispatch(new UpdateClinicListActions(result));
+      }).catch(() => []);;
+    } catch (err) {
       console.error(err);
-    }
-    finally
-    {
+    } finally {
       dispatch(appActionCreators.toggleAppLoading(false));
     }
   },
-  updateCity: (value: number): any => dispatch => dispatch (new UpdateCityAction(value)),
-  addCity: (city: any): any => dispatch => dispatch(new AddCityAction(city)),
-  searchClinic: (searchText: string): any => dispatch => dispatch(new SearchClinicAction(searchText)),
+  updateCity: (value: string): any => dispatch => dispatch(new UpdateCityAction(value)),
+  updateSupplyType: (value: string): any => dispatch => dispatch(new UpdateSupplyTypeAction(value)),
+  updateRequestType: (value: string): any => dispatch => dispatch(new UpdateRequestTypeAction(value)),
 };

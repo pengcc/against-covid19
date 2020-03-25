@@ -10,7 +10,7 @@ import { ClinicsState } from "../../../store/Clinic";
 import { actionCreators as clinicsActionCreators, Actions as ClinicsActions } from "../../../store/Clinic/actions";
 import { AppState } from "../../../store/App";
 import { IClinic } from "../../../types/interfaces";
-import Button from "../../../components/Elements/Button";
+import Button from "../../Elements/Button";
 import { copyStringToClipboard } from "../../../utils/stringHelper";
 import { IntlShape, injectIntl } from "react-intl";
 import { GAODE_SEARCH_PREFIX } from "../../../constants/globals";
@@ -29,7 +29,7 @@ interface Props extends RouteComponentProps {
 }
 
 const { Content } = Layout;
-class Clinic extends React.PureComponent<Props, {}>
+class ClinicDetails extends React.PureComponent<Props, {}>
 {
   public props: ConnectedProps & Props;
 
@@ -103,30 +103,30 @@ class Clinic extends React.PureComponent<Props, {}>
               </Col>
             </Row>
             <Table columns={this.getTableColumns()} dataSource={clinic.supplyList} />
-            <Row gutter={isMobile || isTablet ? 0 : 100}>
-              <Col lg={8} sm={24}>
-                <section className={styles.infoSection}>
-                  <div className={styles.infoSectionTitle}>{Message('MAILING_ADDRESS')}</div>
-                  <div className={styles.infoSectionBody}>
-                    <div className={styles.address}>{clinic.hospital.address}</div>
-                    <div className={styles.addressActions}>
-                      <Button type='link' onClick={() => this.onViewMap(clinic.hospital.address)}>{Message('VIEW_MAP')}</Button>
-                      <Button onClick={() => this.onCopyAddress(clinic.hospital.address)} type='link'>{Message('COPY')}</Button>
-                    </div>
+            <Divider />
+            <Row>
+              <Col lg={24}>
+                <div className={styles.deliveryDetails}>
+                  <div className={styles.deliverInstructions}>
+                    {Message('DELIVERY_INSTRUCTIONS')}
                   </div>
-                </section>
-              </Col>
-              <Col lg={8} sm={24}>
-                <section className={styles.infoSection}>
-                  <div className={styles.infoSectionTitle}>{Message('CONTACT_METHODS')}</div>
-                  <div className={styles.infoSectionBody}>
-                    {clinic.delivery.contact}
+                  {clinic.delivery.details.length > 0 ? 
+                      <div className={styles.deliveryDetails}>
+                        {clinic.delivery.details}
+                      </div> :
+                      (<>
+                        <div className={styles.noInstruction}>
+                          {Message('NO_DELIVERY_INSTRUCTION')}
+                        </div>
+                        <div className={styles.deliveryRecommendation}>
+                          {Message('DELIVERY_RECOMMENDATION')}
+                        </div>
+                        </>)
+                    }
                   </div>
-                </section>
+
               </Col>
             </Row>
-            <Divider />
-            
 					</div>}
 				</Content>
 			</Layout>
@@ -158,4 +158,4 @@ const mapActionsToProps = dispatch =>
 export default injectIntl(connect(
 	mapStateToProps,
 	mapActionsToProps
-)(withRouter(Clinic)) as any) as any;
+)(withRouter(ClinicDetails)) as any) as any;

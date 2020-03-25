@@ -11,6 +11,5 @@ export const getClinics = (link: string): Promise<IClinic[]> => {
 
 export const getDataSources = (): Promise<IDataSource> => {
   const url = `index.json`;
-
   return HttpManager.getInstance().get(url);
 };

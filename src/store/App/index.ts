@@ -1,11 +1,11 @@
-import { Reducer } from "redux";
+ import { Reducer } from "redux";
 import React from 'react';
 import { isActionType } from "../../common/StrongAction";
 import { ILocales } from "../../intl";
 import * as Actions from './actions';
 
 export interface IDataSource {
-	[key: string]: string[];
+	demandData: any;
 }
 
 export interface AppState

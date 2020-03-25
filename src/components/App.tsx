@@ -11,37 +11,23 @@ import Footer from "./Elements/Footer";
 import GlobalLoader from "./Elements/Loader/GloabalLoader";
 import Banner from './Elements/Banner';
 
-interface Props extends RouteComponentProps<{}, {}>
-{
+interface Props extends RouteComponentProps<{}, {}> {
 	app: AppState;
 	actions: Actions;
 }
 
-class App extends React.PureComponent<Props, {}>
-{
-	constructor(props)
-	{
+class App extends React.PureComponent<Props, {}> {
+	constructor(props) {
 		super(props);
-		const { location, history } = props;
-		
-    const params = new URLSearchParams(location.search);
-    
-    // @todo - handle any authentication here
-	}
-	public componentDidMount()
-	{
+		// const { location, history } = props;
 	}
 
-	async componentWillMount()
-	{
-		const { location, actions } = this.props;
-    	const params = new URLSearchParams(location.search)
-    
+	async componentDidMount() {
+		const { actions } = this.props;
 		await actions.fetchAllDataSource();
 	}
 
-	public render()
-	{
+	public render(){
 		const { app } = this.props;
 		return (
 			app.dataSource ? (
@@ -57,12 +43,7 @@ class App extends React.PureComponent<Props, {}>
 	}
 }
 
-const mapStateToProps = (state: IApplicationState) =>
-{
-	return {
-		app: state.app,
-	};
-}
+const mapStateToProps = (state: IApplicationState) => ({ app: state.app });
 
 const mapDispatchToProps = (dispatch) => ({
 	actions: bindActionCreators({

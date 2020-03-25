@@ -4,22 +4,38 @@ export interface IContact {
   tel?: string;
 }
 
-export interface IClicnicSupply {
-  key: string;
-  value: number;
-  specification?: string;
+export interface SupplyList {
+  type: string;
+  amount: string;
+  standard: string;
 }
+
+export interface Hospital {
+  name: string;
+  city: string;
+  state: string;
+  address: string;
+}
+
+export interface Delivery {
+  contact: string;
+  details: string;
+} 
 
 export interface IClinic {
   id: number;
-  province: string;
-  city: string;
-  district: string;
-  name: string;
-  supplies: IClicnicSupply[];
-  url: string;
-  remark: string;
-  contacts: IContact[];
-  cityKey?: number;
-  address: string;
+  timestamp: string;
+  isVerified: boolean;
+	isFulfilled: boolean;
+  hospital: Hospital;
+  delivery: Delivery;
+  requestType: string;
+  supplyList: SupplyList[];
+}
+
+export interface IDemandsData {
+  demandsList: IClinic[];
+  cities: string[];
+  requestTypes: string[];
+  supplyTypes: string[];
 }
