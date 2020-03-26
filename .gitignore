@@ -10,12 +10,15 @@ sitemap.xml
 wwwroot/dist
 data
 
+# IDE
+\.vscode
+
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
-node_modules/
-jspm_packages/
+node_modules
+jspm_packages
 
 # MacOS
 .DS_Store
