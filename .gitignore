@@ -1,0 +1,35 @@
+
+.idea
+npm-debug.log
+*.orig
+*.iml
+build
+md_json/
+log
+sitemap.xml
+wwwroot/dist
+data
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# MacOS
+.DS_Store
+
+# JetBrains idea
+.idea
+*.iml
+
+# import from https://github.com/github/gitignore/blob/master/Node.gitignore
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
