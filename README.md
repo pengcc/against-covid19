@@ -2,12 +2,16 @@
 
 Frontend project to combine and visualize data collected in [this project](https://github.com/wuhan2020/wuhan2020)
 
-Currently we dont have any in production back support for this project, and hence we are using data source from github repo directly. However, we have two data sources depending on the environments:
+Currently we don't have any in production back support for this project, and hence we are using data source from github repo directly. However, we have two data sources depending on the environments:
 
 - [production](https://github.com/wuhan2020/wuhan2020/tree/master/data/json)
 - [staging/test](https://github.com/wuhan2020/wuhan2020-test/tree/master/data/json)
 
 Also please notice that we are using the `raw` version of all these json files, which you could see in code.
+
+## Contribution
+
+Yes please! Feature requests/pull requests are welcome. Please contact the project contributors, and we will be strictly following the git-flow to manage code.
 
 # Getting Started
 
@@ -137,6 +141,4 @@ After Back is fully ready/supported
 - [ ] Update all `GET` request for the above pages
 - [ ] Support any `POST/DELETE` requests
 
-## Contribution
 
-Yes please! Feature requests/pullrequests are welcome. Please contact the project contributors, and we will be strictly following the git-flow to manage code.
