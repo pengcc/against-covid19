@@ -33,6 +33,8 @@ git remote add upstream git@github.com:pengcc/against-covid19.git
 ### 4. Create branch feat-bla-bla
 ```bash
 git branch feat-bla-bla
+# or switch to your new branch directly
+git checkout -b feat-bla-bla develop
 ```
 
 ### 5. Commit your changes, see [Commit rules](#Commit-types)

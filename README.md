@@ -11,7 +11,7 @@ Also please notice that we are using the `raw` version of all these json files, 
 
 ## Contribution
 
-Yes please! Feature requests/pull requests are welcome. Please contact the project contributors, and we will be strictly following the git-flow to manage code.
+Yes please! Feature requests/pull requests are welcome. Please see the [contribution guide](https://github.com/pengcc/against-covid19/tree/develop/contribution)
 
 # Getting Started
 
