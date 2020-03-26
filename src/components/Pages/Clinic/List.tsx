@@ -87,22 +87,24 @@ class ClinicList extends React.PureComponent<Props, State> {
 			<Layout style={{backgroundColor: '#fff', flex: '1 0 auto', minHeight: 'unset'}}>
 				<Content>
 					<div className={styles.pageClinicList}>
-						<div>filter by</div>
-						<section className={styles.filters}>
-							<Row type='flex' justify='center'
-								gutter={[{ xs: 11, sm: 11, md: 20, lg: 20 }, { xs: 13, sm: 13, md: 20, lg: 20 }]}>
-								<Col lg={3} md={3} sm={12} xs={12}>
-									{this.renderSelect('cityFilter', cities, 'city_', 'Select city', this.handleCityChange)}
-								</Col>
-								<Col lg={3} md={3} sm={12} xs={12}>
-									{this.renderSelect('supplyType', supplyTypes, 'supply_type_', 
-										'Select supply type', this.handleSupplyTypeChange)}
-								</Col>
-								<Col lg={6} md={12} sm={24} xs={24}>
-									{this.renderSelect('requestType', requestTypes, 'request_type_', 
-										'Select supply type', this.handleRequestTypeChange)}
-								</Col>
-							</Row>
+						<section className={styles.filterBlock}>
+							<div className={styles.filterTitle}>{Message('FILTER_TITLE')}</div>
+							<div className={styles.filters}>
+								<Row type='flex' justify='center'
+									gutter={[{ xs: 11, sm: 11, md: 20, lg: 20 }, { xs: 13, sm: 13, md: 20, lg: 20 }]}>
+									<Col lg={3} md={3} sm={24} xs={24}>
+										{this.renderSelect('cityFilter', cities, 'city_', 'City', this.handleCityChange)}
+									</Col>
+									<Col lg={3} md={3} sm={24} xs={12}>
+										{this.renderSelect('supplyType', supplyTypes, 'supply_type_', 
+											'Supply type', this.handleSupplyTypeChange)}
+									</Col>
+									<Col lg={3} md={3} sm={24} xs={12}>
+										{this.renderSelect('requestType', requestTypes, 'request_type_', 
+											'Request type', this.handleRequestTypeChange)}
+									</Col>
+								</Row>
+							</div>
 						</section>
 						<section className={styles.listWrapper}>
 							<Row type='flex' style={{width: '100%'}} justify='space-between' gutter={isMobile ? [0, 20] : [20, 20]}>
