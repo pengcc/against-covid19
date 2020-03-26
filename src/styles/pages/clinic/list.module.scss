@@ -16,7 +16,7 @@ $clinic-list-namespace: "pageClinicList";
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;;
+    justify-content: space-between;
 
     .title {
       color: $black0;
@@ -27,13 +27,28 @@ $clinic-list-namespace: "pageClinicList";
     }
   }
 
+  .filterBlock {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .filterTitle {
+    flex: 0 0 80px;
+    @include font(F14-n);
+  }
+
   .filters {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    @include font(F12-n);
 
-    .cityFilter {
+    .cityFilter,
+    .supplyType,
+    .requestType {
       width: 100%;
     }
+
   }
 
   .listWrapper {

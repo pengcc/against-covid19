@@ -15,6 +15,7 @@ const en_US: ILocalization = {
   GLOBAL_TITLE_TEXT: 'Medical supply tracker',
   GLOBAL_SLOGAN: 'Help healthcare workers with proper medical supplies to fight COVID-19',
 
+  FILTER_TITLE: 'Filter by',
   CLINIC_IS_VERIFIED: 'Official request by the hospital',
   SUPPLY_ITEM: 'Supply item',
   SUPPLY_STANDARD: 'Standard',
