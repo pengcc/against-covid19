@@ -1,3 +1,5 @@
+@import './utils';
+
 $pingfang: "PingFangSC", "Roboto", "Helvetica", "Arial", sans-serif;
 
 $thin: 100;
@@ -30,3 +32,30 @@ $px46: 2.875rem;
 $px50: 3.125rem;
 $px60: 3.75rem;
 $px80: 5rem;
+
+
+$font-family: $pingfang;
+
+
+
+$font-weight-map: (
+    l: 300,
+    n: 400,
+    m: 500,
+    sb: 600,
+    b: 700,
+    ul: 800
+);
+
+
+@mixin font($type, $color: #000000, $style: normal) {
+    $font-type: font-str-split($type, '-');
+    $size: number(nth($font-type, 1)) / 16;
+    $weight: nth($font-type, 2);
+
+    font-size: #{$size}rem;
+    font-weight: map-get($font-weight-map, $weight);
+    font-family: $font-family;
+    color: $color;
+    font-style: $style;
+}

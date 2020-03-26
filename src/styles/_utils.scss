@@ -1,0 +1,49 @@
+@function number($string) {
+    // Matrices
+    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+    $numbers: 0 1 2 3 4 5 6 7 8 9;
+  
+    // Result
+    $result: 0;
+  
+    // Looping through all characters
+    @for $i from 1 through str-length($string) {
+      $character: str-slice($string, $i, $i);
+      $index: index($strings, $character);
+    
+      @if not $index {
+        @warn "Unknown character `#{$character}`.";
+        @return false;
+      }
+    
+      $number: nth($numbers, $index);
+      $result: $result * 10 + $number;
+    }
+    @return $result;
+}
+
+/**
+** $font-split: str-split('F10-l') return (10 l)
+**/
+@function font-str-split($str, $separator) {
+    $string: str-slice($str, 2);
+    // empty array/list
+    $split-arr: ();
+    // first index of separator in string
+    $index : str-index($string, $separator);
+    // loop through string
+    @while $index != null {
+        // get the substring from the first character to the separator
+        $item: str-slice($string, 1, $index - 1);
+        // push item to array
+        $split-arr: append($split-arr, $item);
+        // remove item and separator from string
+        $string: str-slice($string, $index + 1);
+        // find new index of separator
+        $index : str-index($string, $separator);
+    }
+    // add the remaining string to list (the last item)
+    $split-arr: append($split-arr, $string);
+
+    @return $split-arr;
+}
