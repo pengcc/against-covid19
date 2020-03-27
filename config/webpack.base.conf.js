@@ -24,10 +24,6 @@ module.exports = {
 		},
 	mode: DEV ? 'development' : 'production',
 
-	resolve: {
-		// Add '.ts' and '.tsx' as resolvable extensions.
-		extensions: [".js", ".jsx", ".ts", ".tsx"],
-	},
 	output: {
 		path: path.resolve(__dirname, '..', 'wwwroot/dist'),
 		// filename: DEV ? 'app.bundle.js' : 'app.[hash].js'
@@ -60,8 +56,9 @@ module.exports = {
 	resolve: {
 		modules: [
 			"node_modules",
+			path.resolve(__dirname, "app")
 		],
-		extensions: ['.js', '.tsx', '.json', '.ts', '.scss'],
+		extensions: ['.js', '.tsx', '.json', '.ts', ".tsx", '.scss']
 	},
 
 	module: {

@@ -57,6 +57,10 @@ class ClinicDetails extends React.PureComponent<Props, {}>
     ]
   }
 
+  getTableDataSource = (list: any[]): any[] => {
+   return list.map((item, idx) => ({...item, key: idx}));
+  } 
+
   onCopyAddress = (address: string) => {
     copyStringToClipboard(address);
     message.success(this.props.intl.formatMessage({ id: 'COPIED_TO_CLIPBOARD' }));
@@ -130,7 +134,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
               <div className={styles.publish}>{this.getPublishInfo()}</div>
               </Col>
             </Row>
-            <Table columns={this.getTableColumns()} dataSource={clinic.supplyList} />
+            <Table columns={this.getTableColumns()} dataSource={this.getTableDataSource(clinic.supplyList)} />
             <Divider />
             <Row>
               <Col lg={24}>
