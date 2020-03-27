@@ -8,7 +8,7 @@ $clinic-card-namespace: "elementsClinicCard";
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 340px;
+  height: 450px;
   background-color: $white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;;
@@ -18,6 +18,12 @@ $clinic-card-namespace: "elementsClinicCard";
     flex-direction: column;
     height: 100%;
 
+    .verificationBadge {
+      position: absolute;
+      right: 20px;
+      top: 30px;
+    }
+
     .name {
       color: $black0;
       font-size: $px24;
@@ -25,7 +31,18 @@ $clinic-card-namespace: "elementsClinicCard";
       width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      padding-right: 15px;
+    }
+
+    .location,
+    .timestamp {
+      height: 26px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 5px;
+      }
     }
 
     .subtitle {
@@ -42,10 +59,25 @@ $clinic-card-namespace: "elementsClinicCard";
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+    .supplyList {
+      margin-top: 20px;
+    }
   
-    .otherSupplies {
-      font-size: $px16;
-      color: $grey4;
+    .supplyRow {
+      border-top: 1px solid $grey9;
+      display: flex;
+      height: 45px;
+      align-items: center;
+      @include font(F16-b);
+
+      .supplyAmount {
+        @include font(F14-n, $grey6);
+      }
+      
+      &.otherSupplies {
+        @include font(F14-n, $grey6);
+      }
     }
   }
 }
