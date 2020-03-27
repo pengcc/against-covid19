@@ -27,6 +27,7 @@ const Icon = (Icon: React.ReactType): React.StatelessComponent<IconProps> => (
 	});
 };
 
+
 export const IconDoctor = Icon(require('../images/icons/icon-doctor.svg'));
 export const IconDonation = Icon(require('../images/icons/icon-donation.svg'));
 export const IconFactory = Icon(require('../images/icons/icon-factory.svg'));
@@ -39,7 +40,10 @@ export const IconLogoWhite = Icon(require('../images/icons/logo-white.svg'));
 export const IconMainIcon = Icon(require('../images/icons/icon.svg'));
 export const IconMainIconWhite = Icon(require('../images/icons/icon-white.svg'));
 export const IconTopBanner = Icon(require('../images/icons/top-banner.svg'));
-
+export const IconVerified = Icon(require('../images/icons/icon-verified.svg'));
+export const IconUser = Icon(require('../images/icons/icon-user.svg'));
+export const IconEdit = Icon(require('../images/icons/icon-edit.svg'));
+export const IconLocation= Icon(require('../images/icons/icon-location.svg'));
 
 export enum IconNames
 {

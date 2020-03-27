@@ -8,6 +8,11 @@ import Button from "../Button";
 import Message from "../../../components/Message";
 import { History } from "history";
 import { getClinicUrl } from "../../../constants/urls";
+import { IconVerified, 
+        IconUser,
+        IconEdit,
+        IconLocation
+       } from '../../../components/Icons';
 
 interface ClinicCardProps {
   cardData: IClinic;
@@ -22,7 +27,7 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
   renderMoreSupplies = (length) => {
     return (
       length > 3 && 
-      <div className={styles.otherSupplies}>+{length - 3 }{Message('OTHER_SUPPLIES')}</div>
+      <div className={`${styles.otherSupplies} ${styles.supplyRow}`}>+{length - 3 }{Message('OTHER_SUPPLIES')}</div>
     )
   }
 
@@ -43,20 +48,25 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
     return (
       <Card className={styles.elementsClinicCard} bodyStyle={{padding: '20px'}}>
         <div className={styles.contentWrapper}>
-          {isVerified && <div className={styles.verificationBadge}>checked</div>}
+          <div className={styles.verificationBadge}>
+          {isVerified ?
+            <IconVerified /> :
+            <IconUser />
+          }
+          </div>
           <div className={styles.basicInfo}>
             <div className={styles.name}>{hospital.name}</div>
             <div className={styles.location}>
-              <div>{hospital.city}, {hospital.state}</div>
+              <IconLocation /> {hospital.city}, {hospital.state}
             </div>
             <div className={styles.timestamp}>
-              <div>published {this.getPublishedHours(timestamp)} hour(s) ago</div>
+              <IconEdit />published {this.getPublishedHours(timestamp)} hour(s) ago
             </div>
           </div>
           <div className={styles.supplyList}>
             {supplyListLength > 0 && [...supplyList].slice(0, 3).map((supply, index) => {
                 return (
-                  <Row key={`supply_${index}`} type='flex' justify='space-between' style={{marginBottom: '20px', alignItems: 'center'}}>
+                  <Row className={styles.supplyRow} key={`supply_${index}`} type='flex' justify='space-between'>
                     <div className={styles.supplyType}>{supply.type}</div>
                     <div className={styles.supplyAmount}>{supply.amount}</div>
                   </Row>
@@ -66,9 +76,8 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
           </div>
           <Button
             onClick={this.onViewDetailClick}
-            style={{alignSelf: 'center', width: '89px', height: '28px', fontSize: '12px', marginTop: '26px', marginBottom: '6px'}}
-            type='ghost'
-            shape='round'>
+            style={{alignSelf: 'center', width: '140px'}}
+            >
               {Message('VIEW_DETAIL')}
             </Button>
         </div>

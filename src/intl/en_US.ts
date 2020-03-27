@@ -28,6 +28,8 @@ const en_US: ILocalization = {
   BUTTON_SHARE: 'Share',
   BUTTON_DONATE: 'Donate',
 
+  VIEW_DETAIL: 'View details',
+
 
   CONTACT_METHODS: 'Contact',
   COPIED_TO_CLIPBOARD: 'Copied',
@@ -123,7 +125,7 @@ const en_US: ILocalization = {
 
   VIEW_CLINIC: '查看义诊信息',
   VIEW_DATA: '查看数据',
-  VIEW_DETAIL: '查看详情',
+  
   VIEW_DONATION: '查看全部捐款渠道',
   VIEW_HOSPITALS: '查看全部医院需求',
   VIEW_MAP: '查看地图',
