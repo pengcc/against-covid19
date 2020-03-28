@@ -1,7 +1,7 @@
 @import '../../colors';
 @import '../../media';
 @import '../../library';
-
+@import '../../fonts';
 
 $nav-namespace: 'elementsNav';
 
@@ -53,15 +53,12 @@ $nav-namespace: 'elementsNav';
       left: 0;
     }
 
-    .title,
-    .text  {
+    .title{
       width: 100%;
-      font-size: 12px;
       display: inline-block;
-    }
-
-    .title {
-      color: #FF6440;
+      @include font(F14-b, $red4);
+      height: 24px;
+      line-height: 24px;
     }
   }
 }

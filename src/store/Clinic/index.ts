@@ -9,6 +9,9 @@ import { IApplicationState } from "..";
 
 export interface ClinicsState {
 	demandsList: IClinic[];
+	cities: any;
+	supplyTypes: any;
+	requestTypes: any;
 	selectedCity: string;
 	selectedSupplyType: string;
 	selectedRequestType: string;
@@ -16,6 +19,9 @@ export interface ClinicsState {
 
 export const initialClinicsState: ClinicsState = {
 	demandsList: [],
+	cities: [],
+	supplyTypes: [],
+	requestTypes: [],
 	selectedCity: '',
 	selectedSupplyType: '',
 	selectedRequestType: ''
@@ -36,19 +42,27 @@ export const makeFilteredClinicsSelector = () => {
 			if (!clinics) return [];
 			return clinics.filter((c) => {
 				const { hospital, requestType, supplyList} = c;
-				  const matchCity = !selectedCity || hospital.city === selectedCity;
-				  const matchRequest = !selectedRequestType || selectedRequestType === requestType;
-				  const matchSupply = !selectedSupplyType || supplyList.find(item => item.type === selectedRequestType);
-				  return matchCity && matchRequest && matchSupply;
+				const isCityInit = !selectedCity || selectedCity === '0';
+				const isRequestTypeInit = !selectedRequestType || selectedRequestType === '0';
+				const isSupplyTypeInit = !selectedSupplyType || selectedSupplyType === '0';
+				const matchCity = isCityInit || hospital.city === selectedCity;
+				const matchRequest = isRequestTypeInit || selectedRequestType === requestType;
+				const matchSupply = isSupplyTypeInit || supplyList.find(item => item.type === selectedSupplyType);
+				return matchCity && matchRequest && matchSupply;
       		});
 		}
 	)
 }
 
-const ClinicReducer: Reducer<ClinicsState> = (state: ClinicsState, act) =>
-{
+const ClinicReducer: Reducer<ClinicsState> = (state: ClinicsState, act) => {
 	if (isActionType(act, Actions.UpdateClinicListActions)) {
-		return {...state, demandsList: state.demandsList.concat(act.demandsList)};
+		const {demandsList, cities, supplyTypes, requestTypes} = act.dataSource;
+		return {...state, 
+			demandsList: state.demandsList.concat(demandsList),
+			cities: state.cities.concat(cities),
+			supplyTypes: state.supplyTypes.concat(supplyTypes),
+			requestTypes: state.requestTypes.concat(requestTypes)
+		};
 	} else if (isActionType(act, Actions.UpdateCityAction)) {
 		return {...state, selectedCity: act.value};
 	} else if (isActionType(act, Actions.UpdateSupplyTypeAction)) {

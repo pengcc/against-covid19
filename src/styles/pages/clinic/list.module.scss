@@ -39,6 +39,7 @@ $clinic-list-namespace: "pageClinicList";
 
   .filters {
     display: flex;
+    flex: 0 0 80%;
     flex-direction: column;
     justify-content: space-between;
     @include font(F12-n);

@@ -18,7 +18,6 @@ const Nav: React.FC<Props> = () => {
       </div>
       <div className={`${styles.globalTitle}`}>
         <span className={`${styles.title}`}>{Message('GLOBAL_TITLE')}</span>
-        <span className={`${styles.text}`}>{Message('GLOBAL_TITLE_TEXT')}</span>
       </div>
     </div>
   );

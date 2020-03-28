@@ -34,6 +34,9 @@ interface ConnectedProps {
   loading: boolean;
   demandsList: IClinic[];
   demandData: IDataSource;
+  cities: any;
+  supplyTypes: any;
+  requestTypes: any; 
   intl: IntlShape;
 }
 
@@ -56,9 +59,9 @@ class ClinicList extends React.PureComponent<Props, State> {
 	componentDidMount() {
 		this.fetchDemandsData();
 	}
-	handleCityChange = (val) => {}
-	handleSupplyTypeChange = (val) => {};
-	handleRequestTypeChange = (val) => {};
+	handleCityChange = (val) => {this.props.actions.updateCity(val)}
+	handleSupplyTypeChange = (val) => {this.props.actions.updateSupplyType(val)};
+	handleRequestTypeChange = (val) => {this.props.actions.updateRequestType(val)};
 	renderSelect = (styleId='', data=[''], prefix='', defaultText='', handler=(x) => {}) => {
 		return (
 			<Select
@@ -81,8 +84,8 @@ class ClinicList extends React.PureComponent<Props, State> {
 		this.setState({selectedClinic: undefined});
 	}
 	render() {
-		const { demandsList, cities, supplyTypes, requestTypes } = this.props.app.dataSource && this.props.app.dataSource.demandData ;
-		
+		const { demandsList } = this.props;
+		const {cities, supplyTypes, requestTypes} = this.props.clinicsState;
 		return (
 			<Layout style={{backgroundColor: '#fff', flex: '1 0 auto', minHeight: 'unset'}}>
 				<Content>
@@ -92,14 +95,14 @@ class ClinicList extends React.PureComponent<Props, State> {
 							<div className={styles.filters}>
 								<Row type='flex' justify='center'
 									gutter={[{ xs: 11, sm: 11, md: 20, lg: 20 }, { xs: 13, sm: 13, md: 20, lg: 20 }]}>
-									<Col lg={3} md={3} sm={24} xs={24}>
+									<Col lg={8} md={8} sm={24} xs={24}>
 										{this.renderSelect('cityFilter', cities, 'city_', 'City', this.handleCityChange)}
 									</Col>
-									<Col lg={3} md={3} sm={24} xs={12}>
+									<Col lg={8} md={8} sm={24} xs={12}>
 										{this.renderSelect('supplyType', supplyTypes, 'supply_type_', 
 											'Supply type', this.handleSupplyTypeChange)}
 									</Col>
-									<Col lg={3} md={3} sm={24} xs={12}>
+									<Col lg={8} md={8} sm={24} xs={12}>
 										{this.renderSelect('requestType', requestTypes, 'request_type_', 
 											'Request type', this.handleRequestTypeChange)}
 									</Col>
@@ -134,11 +137,12 @@ class ClinicList extends React.PureComponent<Props, State> {
 
 const mapStateToProps = (state: IApplicationState) => {
   const filteredClinicsSelector = makeFilteredClinicsSelector();
+  console.log(state);
   return {
     app: state.app,
     loading: state.app.loading,
     clinicsState: state.clinic,
-    clinicList: filteredClinicsSelector(state)
+	demandsList: filteredClinicsSelector(state)
   };
 };
 
@@ -156,7 +160,3 @@ const mapActionsToProps = dispatch => {
 export default injectIntl(
   connect(mapStateToProps, mapActionsToProps)(withRouter(ClinicList)) as any
 ) as any;
-
-/* Add this button back when needed
-<Button shape='round' type='primary' onClick={() => this.onNewClick}>{Message('NEW_DEMAND')}</Button>
-*/

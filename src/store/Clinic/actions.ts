@@ -7,7 +7,7 @@ import { IClinic } from '../../types/interfaces';
 const SUFFIX = '__CLINICS';
 
 @typeName('UPDATE_LIST' + SUFFIX)
-export class UpdateClinicListActions extends StrongAction { constructor(public demandsList: IClinic[]) { super(); }}
+export class UpdateClinicListActions extends StrongAction { constructor(public dataSource: any) { super(); }}
 
 @typeName('UPDATE_CITY' + SUFFIX)
 export class UpdateCityAction extends StrongAction { constructor(public value: string) {super(); }}
@@ -24,7 +24,7 @@ export class ResetAction extends StrongAction { constructor() { super(); }}
 
 export interface Actions
 {
-  fetchClinicList(list: any[]);
+  fetchClinicList(data: any);
   updateCity(value: number);
   updateSupplyType(value: number);
   updateRequestType(value: number);
@@ -32,13 +32,11 @@ export interface Actions
 
 
 export const actionCreators = {
-  fetchClinicList: (link: string): any => async (dispatch) => {
+  fetchClinicList: (data: any): any => async (dispatch) => {
     dispatch(new ResetAction());
     dispatch(appActionCreators.toggleAppLoading(true));
     try {
-      getClinics(link).then((result) => {
-        dispatch(new UpdateClinicListActions(result));
-      }).catch(() => []);;
+      dispatch(new UpdateClinicListActions(data));
     } catch (err) {
       console.error(err);
     } finally {
