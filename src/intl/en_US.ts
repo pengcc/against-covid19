@@ -11,7 +11,7 @@ const en_US: ILocalization = {
   BANK_ACCOUNT_NUMBER: '银行账号',
   BANK_TRANSFER: '银行转账',
 
-  GLOBAL_TITLE: 'COVID-19',
+  GLOBAL_TITLE: 'Against COVID19',
   GLOBAL_TITLE_TEXT: 'Medical supply tracker',
   GLOBAL_SLOGAN: 'Help healthcare workers with proper medical supplies to fight COVID-19',
 
