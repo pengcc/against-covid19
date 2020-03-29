@@ -137,7 +137,6 @@ class ClinicList extends React.PureComponent<Props, State> {
 
 const mapStateToProps = (state: IApplicationState) => {
   const filteredClinicsSelector = makeFilteredClinicsSelector();
-  console.log(state);
   return {
     app: state.app,
     loading: state.app.loading,

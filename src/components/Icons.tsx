@@ -44,6 +44,8 @@ export const IconVerified = Icon(require('../images/icons/icon-verified.svg'));
 export const IconUser = Icon(require('../images/icons/icon-user.svg'));
 export const IconEdit = Icon(require('../images/icons/icon-edit.svg'));
 export const IconLocation= Icon(require('../images/icons/icon-location.svg'));
+export const IconPhone = Icon(require('../images/icons/icon-phone.svg'));
+export const IconDelivery = Icon(require('../images/icons/icon-delivery.svg'));
 
 export enum IconNames
 {

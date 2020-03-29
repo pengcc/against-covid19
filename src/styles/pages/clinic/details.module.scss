@@ -1,0 +1,114 @@
+
+@import '../../colors';
+@import '../../fonts';
+@import '../../media';
+
+$clinic-namespace: "pageClinic";
+
+%textWithIconRow {
+  display: flex;
+  align-items: center;
+}
+
+.#{$clinic-namespace} {
+  .verification {
+    height: 25px;
+    @extend %textWithIconRow;
+    padding: 20px;
+    border-bottom: 1px solid #e8e8e8;
+    @include font(F12-n);
+
+    svg {
+      margin-right: 5px;
+    }
+  }
+  .detailsWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+
+    .clinicName {
+      @include font(F24-b, $black0);
+      margin-bottom: 20px;
+
+      @include mobile-and-smaller() {
+        font-size: $px18;
+      }
+    }
+   
+    .location,
+    .contact,
+    .publishment {
+      height: 25px;
+      @extend %textWithIconRow;
+      @include font(F14-n);
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+
+    .supplyList {
+      .tHeader {
+        &Type,
+        &Standard,
+        &Amount {
+          @include font(F16-b, $gray3);
+        }
+      }
+
+      .type {
+        @include font(F16-b);
+      }
+
+      .standard,
+      .amount {
+        @include font(F14-n, $gray8);
+      }
+    }
+
+    .deliveryDetailsWrapper {
+      .deliveryTitle {
+        height: 25px;
+        @extend %textWithIconRow;
+        @include font(F16-b);
+        margin-bottom: 20px;
+
+        svg {
+          margin-right: 5px;
+        }
+      }
+
+      .deliveryDetails {
+        @include font(F14-n);
+        padding-left: 20px;
+        height: 180px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .buttonList {
+      @include font(F14-n, $gray3);
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+
+      button {
+        width: 22%;
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+          background-color: #FF6440;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

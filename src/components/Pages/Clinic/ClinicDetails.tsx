@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from '../../../styles/pages/clinic/index.module.scss';
+import styles from '../../../styles/pages/clinic/details.module.scss';
 import Message from "../../Message";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -15,6 +15,13 @@ import { copyStringToClipboard } from "../../../utils/stringHelper";
 import { IntlShape, injectIntl } from "react-intl";
 import { GAODE_SEARCH_PREFIX } from "../../../constants/globals";
 import { isMobile, isTablet } from "../../../utils/deviceHelper";
+import { IconVerified, 
+  IconUser,
+  IconEdit,
+  IconLocation,
+  IconPhone,
+  IconDelivery
+ } from '../../../components/Icons';
 
 interface ConnectedProps {
   loading: boolean;
@@ -39,20 +46,22 @@ class ClinicDetails extends React.PureComponent<Props, {}>
         title: Message('SUPPLY_ITEM'),
         dataIndex: 'type',
         key: 'type',
-        render: text => <span>{text}</span>
+        className: styles.tHeaderType,
+        render: text => <span className={styles.type}>{text}</span>
       },
       {
         title: Message('SUPPLY_STANDARD'),
         dataIndex: 'standard',
         key: 'standard',
-        render: text => <span>{text}</span>
+        className: styles.tHeaderStandard,
+        render: text => <span className={styles.standard}>{text}</span>
       },
       {
         title: Message('SUPPLY_AMOUNT'),
         dataIndex: 'amount',
         key: 'amount',
-        className: styles.lastColumn,
-        render: text => <span>{text}</span>
+        className: styles.tHeaderAmount,
+        render: text => <span className={styles.amount}>{text}</span>
       },
     ]
   }
@@ -71,7 +80,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
 
   getPublishInfo = (): any => {
     const {clinic} = this.props;
-    return `Published ${clinic?.isVerified ? 'and verified by volunteer' : ''}a few hours ago`;
+    return `Published ${clinic?.isVerified ? 'and verified by volunteer ' : ''}a few hours ago`;
   }
 
   handleReportOnClick = (): any => {}
@@ -89,15 +98,12 @@ class ClinicDetails extends React.PureComponent<Props, {}>
     return buttonList.map((item, index) => {
       const {name, handler} = item;
       return (
-        <Col key={index}>
           <Button
+            key={`btn_${index}`}
             onClick={handler}
-            style={styles[name]}
-            type='ghost'
-            shape='round'>
-              {Message(`BUTTON_${name.toUpperCase()}`)}
-            </Button>
-        </Col>
+            className={styles[name]}>
+            {Message(`BUTTON_${name.toUpperCase()}`)}
+          </Button>
       )
     });
   }
@@ -109,58 +115,63 @@ class ClinicDetails extends React.PureComponent<Props, {}>
 				<Content>
 					{clinic && <div className={styles.pageClinic}>
             {clinic.isVerified && 
+                <Row>
+                  <Col lg={24}>
+                    <div className={styles.verification}><IconVerified /> {Message('CLINIC_IS_VERIFIED')}</div>
+                  </Col>
+                </Row>
+            }
+            <div className={styles.detailsWrapper}>
               <Row>
                 <Col lg={24}>
-                  <div className={styles.title}>{Message('CLINIC_IS_VERIFIED')}</div>
+                  <div className={styles.clinicName}>{clinic.hospital.name}</div>
                 </Col>
-              </Row>}
-            <Row>
-              <Col lg={24}>
-                <div className={styles.clinicName}>{clinic.hospital.name}</div>
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={24}>
-                <div className={styles.location}>{clinic.hospital.address}</div>
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={24}>
-                <div className={styles.contact}>{clinic.delivery.contact}</div>
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={24}>
-              <div className={styles.publish}>{this.getPublishInfo()}</div>
-              </Col>
-            </Row>
-            <Table columns={this.getTableColumns()} dataSource={this.getTableDataSource(clinic.supplyList)} />
-            <Divider />
-            <Row>
-              <Col lg={24}>
-                <div className={styles.deliveryDetails}>
-                  <div className={styles.deliverInstructions}>
-                    {Message('DELIVERY_INSTRUCTIONS')}
+              </Row>
+              <Row>
+                <Col lg={24}>
+                  <div className={styles.location}><IconLocation /> {clinic.hospital.address}</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={24}>
+                  <div className={styles.contact}><IconPhone /> {clinic.delivery.contact}</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={24}>
+                <div className={styles.publishment}><IconEdit /> {this.getPublishInfo()}</div>
+                </Col>
+              </Row>
+              
+              <Table className={styles.supplyList} columns={this.getTableColumns()} dataSource={this.getTableDataSource(clinic.supplyList)} />
+              <Divider />
+              <Row>
+                <Col lg={24}>
+                  <div className={styles.deliveryDetailsWrapper}>
+                    <div className={styles.deliveryTitle}>
+                      <IconDelivery /> {Message('DELIVERY_INSTRUCTIONS')}
+                    </div>
+                    <div className={styles.deliveryDetails}>
+                      {clinic.delivery.details.length > 0 ? 
+                          clinic.delivery.details
+                         :
+                        (<>
+                          <div className={styles.noInstruction}>
+                            {Message('NO_DELIVERY_INSTRUCTIONS')}
+                          </div>
+                          <div className={styles.deliveryRecommendation}>
+                            {Message('DELIVERY_RECOMMENDATION')}
+                          </div>
+                          </>)
+                      }
+                    </div>
                   </div>
-                  {clinic.delivery.details.length > 0 ? 
-                      <div className={styles.deliveryDetails}>
-                        {clinic.delivery.details}
-                      </div> :
-                      (<>
-                        <div className={styles.noInstruction}>
-                          {Message('NO_DELIVERY_INSTRUCTIONS')}
-                        </div>
-                        <div className={styles.deliveryRecommendation}>
-                          {Message('DELIVERY_RECOMMENDATION')}
-                        </div>
-                        </>)
-                    }
-                  </div>
-              </Col>
-            </Row>
-            <Row>
-                {this.renderButtonRow()}
-            </Row>
+                </Col>
+              </Row>
+              <Row className={styles.buttonList}>
+                  {this.renderButtonRow()}
+              </Row>
+            </div>
 					</div>}
 				</Content>
 			</Layout>
