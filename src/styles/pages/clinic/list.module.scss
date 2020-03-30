@@ -33,7 +33,7 @@ $clinic-list-namespace: "pageClinicList";
   }
 
   .filterTitle {
-    flex: 0 0 80px;
+    flex: 0 0 65px;
     @include font(F14-n);
   }
 
@@ -56,5 +56,6 @@ $clinic-list-namespace: "pageClinicList";
     display: flex;
     margin-top: 30px;
     margin-bottom: 40px;
+    justify-content: center;
   }
 }
