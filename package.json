@@ -41,6 +41,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "css-loader": "^3.4.2",
+    "gh-pages": "^2.2.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
@@ -66,6 +67,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d wwwroot/dist",
     "dev": "./scripts/dev.sh",
     "build": "rm -rf ./wwwroot/dist/** && ./node_modules/.bin/webpack --config ./config/webpack.prod.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -84,5 +86,5 @@
   "bugs": {
     "url": "https://github.com/pengcc/against-covid19/issues"
   },
-  "homepage": "https://github.com/pengcc/against-covid19#readme"
+  "homepage": "https://pengcc.github.io/against-covid19"
 }

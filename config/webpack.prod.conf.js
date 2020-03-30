@@ -5,13 +5,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require("./webpack.base.conf");
 const WebpackCdnPlugin = require("webpack-cdn-plugin");
 
+const webRoot='/against-covid19';
+
 const webpackConfig = merge(baseConfig, {
 	mode: 'production',
 	output: {
 		path: path.resolve(__dirname, '..', 'wwwroot/dist'),
 		filename: './static/js/app.bundle.[hash].js',
 		chunkFilename: './static/js/[id].[chunkhash].js',
-		publicPath: process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '',
+		publicPath: process.env.PUBLIC_URL ? process.env.PUBLIC_URL : webRoot,
 	},
 	plugins: [
 		...baseConfig.plugins,
