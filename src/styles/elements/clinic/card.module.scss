@@ -71,6 +71,10 @@ $clinic-card-namespace: "elementsClinicCard";
       align-items: center;
       @include font(F16-b);
 
+      .supplyType {
+        text-transform: capitalize;
+      }
+
       .supplyAmount {
         @include font(F14-n, $gray6);
       }

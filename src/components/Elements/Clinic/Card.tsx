@@ -19,6 +19,8 @@ interface ClinicCardProps {
   onViewDetailClick: (clinic: IClinic) => void;
 }
 
+import { splitCamelCaseStr } from '../../../utils/stringHelper';
+
 export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}> {
   onViewDetailClick = () => {
     this.props.onViewDetailClick && this.props.onViewDetailClick(this.props.cardData);
@@ -67,7 +69,7 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
             {supplyListLength > 0 && [...supplyList].slice(0, 3).map((supply, index) => {
                 return (
                   <Row className={styles.supplyRow} key={`supply_${index}`} type='flex' justify='space-between'>
-                    <div className={styles.supplyType}>{supply.type}</div>
+                    <div className={styles.supplyType}>{splitCamelCaseStr(supply.type)}</div>
                     <div className={styles.supplyAmount}>{supply.amount}</div>
                   </Row>
                 )

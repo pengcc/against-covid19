@@ -8,3 +8,5 @@ export const copyStringToClipboard = str =>
   document.execCommand('copy');
   document.body.removeChild(el);
 };
+
+export const splitCamelCaseStr = str => str.replace(/([^A-Z])([A-Z])/g, '$1 $2');
