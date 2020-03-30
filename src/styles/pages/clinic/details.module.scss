@@ -59,11 +59,13 @@ $clinic-namespace: "pageClinic";
         &Standard,
         &Amount {
           @include font(F16-b, $gray3);
+          text-transform: capitalize;
         }
       }
 
       .type {
         @include font(F16-b);
+        text-transform: capitalize;
       }
 
       .standard,
@@ -105,7 +107,7 @@ $clinic-namespace: "pageClinic";
 
         &:last-child {
           margin-right: 0;
-          background-color: #FF6440;
+          background-color: $red4;
           color: #ffffff;
         }
       }

@@ -23,6 +23,8 @@ import { IconVerified,
   IconDelivery
  } from '../../../components/Icons';
 
+import { splitCamelCaseStr } from '../../../utils/stringHelper';
+
 interface ConnectedProps {
   loading: boolean;
   app: AppState;
@@ -47,7 +49,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
         dataIndex: 'type',
         key: 'type',
         className: styles.tHeaderType,
-        render: text => <span className={styles.type}>{text}</span>
+        render: text => <span className={styles.type}>{splitCamelCaseStr(text)}</span>
       },
       {
         title: Message('SUPPLY_STANDARD'),
