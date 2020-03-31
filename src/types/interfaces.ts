@@ -25,7 +25,7 @@ export interface Delivery {
 export interface IClinic {
   id: number;
   timestamp: string;
-  isVerified: boolean;
+  isVerified: string;
 	isFulfilled: boolean;
   hospital: Hospital;
   delivery: Delivery;

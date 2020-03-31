@@ -15,6 +15,7 @@ import { copyStringToClipboard } from "../../../utils/stringHelper";
 import { IntlShape, injectIntl } from "react-intl";
 import { GAODE_SEARCH_PREFIX } from "../../../constants/globals";
 import { isMobile, isTablet } from "../../../utils/deviceHelper";
+import { convertObjToArray } from "../../../utils/mapHelper";
 import { IconVerified, 
   IconUser,
   IconEdit,
@@ -112,6 +113,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
 	render()
 	{
     const {clinic} = this.props;
+    const supplyArray = convertObjToArray({...clinic?.supplyList});
 		return (
 			<Layout style={{backgroundColor: '#fff', flex: '1 0 auto', minHeight: 'unset'}}>
 				<Content>
@@ -145,7 +147,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
                 </Col>
               </Row>
               
-              <Table className={styles.supplyList} columns={this.getTableColumns()} dataSource={this.getTableDataSource(clinic.supplyList)} />
+              <Table className={styles.supplyList} columns={this.getTableColumns()} dataSource={this.getTableDataSource(supplyArray)} />
               <Divider />
               <Row>
                 <Col lg={24}>
