@@ -46,8 +46,11 @@ export const makeFilteredClinicsSelector = () => {
 				const isRequestTypeInit = !selectedRequestType || selectedRequestType === '0';
 				const isSupplyTypeInit = !selectedSupplyType || selectedSupplyType === '0';
 				const matchCity = isCityInit || hospital.city === selectedCity;
-				const matchRequest = isRequestTypeInit || selectedRequestType === requestType;
-				const matchSupply = isSupplyTypeInit || supplyList.find(item => item.type === selectedSupplyType);
+				console.log('requestType');
+				console.log(requestType);
+				console.log(requestType.toLowerCase().indexOf(selectedRequestType));
+				const matchRequest = isRequestTypeInit || requestType.toLowerCase().indexOf(selectedRequestType) > -1;
+				const matchSupply = isSupplyTypeInit || supplyList.hasOwnProperty(selectedSupplyType);
 				return matchCity && matchRequest && matchSupply;
       		});
 		}
@@ -68,6 +71,8 @@ const ClinicReducer: Reducer<ClinicsState> = (state: ClinicsState, act) => {
 	} else if (isActionType(act, Actions.UpdateSupplyTypeAction)) {
 		return {...state, selectedSupplyType: act.value};
 	} else if (isActionType(act, Actions.UpdateRequestTypeAction)) {
+		console.log('request type');
+		console.log(act.value);
 		return {...state, selectedRequestType: act.value};
 	} else if (isActionType(act, Actions.ResetAction)) {
 		return {...initialClinicsState};

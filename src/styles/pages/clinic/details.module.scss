@@ -44,7 +44,7 @@ $clinic-namespace: "pageClinic";
     .location,
     .contact,
     .publishment {
-      height: 25px;
+      min-height: 25px;
       @extend %textWithIconRow;
       @include font(F14-n);
 

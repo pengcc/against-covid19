@@ -10,3 +10,5 @@ export const copyStringToClipboard = str =>
 };
 
 export const splitCamelCaseStr = str => str.replace(/([^A-Z])([A-Z])/g, '$1 $2');
+
+export const getCleanAmount = amount => Number.isNaN(Number(amount)) ? '-' : amount;

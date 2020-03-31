@@ -8,6 +8,9 @@ import Button from "../Button";
 import Message from "../../../components/Message";
 import { History } from "history";
 import { getClinicUrl } from "../../../constants/urls";
+import { convertObjToArray } from "../../../utils/mapHelper";
+import { getCleanAmount } from "../../../utils/stringHelper";
+
 import { IconVerified, 
         IconUser,
         IconEdit,
@@ -45,13 +48,14 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
       }
     } = this.props;
 
-    const supplyListLength = supplyList.length;
+    const supplyArray = convertObjToArray({...supplyList});
+    const supplyArrayLength = supplyArray.length;
 
     return (
       <Card className={styles.elementsClinicCard} bodyStyle={{padding: '20px'}}>
         <div className={styles.contentWrapper}>
           <div className={styles.verificationBadge}>
-          {isVerified ?
+          {isVerified === 'Yes' ?
             <IconVerified /> :
             <IconUser />
           }
@@ -66,15 +70,15 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
             </div>
           </div>
           <div className={styles.supplyList}>
-            {supplyListLength > 0 && [...supplyList].slice(0, 3).map((supply, index) => {
+            {supplyArrayLength > 0 && [...supplyArray].slice(0, 3).map((supply, index) => {
                 return (
                   <Row className={styles.supplyRow} key={`supply_${index}`} type='flex' justify='space-between'>
                     <div className={styles.supplyType}>{splitCamelCaseStr(supply.type)}</div>
-                    <div className={styles.supplyAmount}>{supply.amount}</div>
+                    <div className={styles.supplyAmount}>{getCleanAmount(supply.amount)}</div>
                   </Row>
                 )
             })}
-            {this.renderMoreSupplies(supplyListLength)}
+            {this.renderMoreSupplies(supplyArrayLength)}
           </div>
           <Button
             onClick={this.onViewDetailClick}

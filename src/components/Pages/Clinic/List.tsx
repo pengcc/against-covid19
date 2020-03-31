@@ -14,6 +14,7 @@ import ClinicDetails from "./ClinicDetails";
 import { AppState } from "../../../store/App";
 import { IntlShape, injectIntl } from "react-intl";
 import { isMobile } from "../../../utils/deviceHelper";
+import { splitCamelCaseStr } from "../../../utils/stringHelper";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -71,7 +72,12 @@ class ClinicList extends React.PureComponent<Props, State> {
 				<Option key='0' value='0'>{defaultText}</Option>
 				{data.map((item, index) => {
 					let key = index + 1;
-					return ( <Option key={`${prefix}${key}`} value={item}>{item}</Option>);
+					return (<Option key={`${prefix}${key}`} value={item} className={styles[`${styleId}-item`]}>
+								{ styleId === 'supplyType' ?
+									splitCamelCaseStr(item) :
+									item
+								}
+							</Option>);
 				})}
 			</Select>
 		);

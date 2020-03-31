@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require("./webpack.base.conf");
 const WebpackCdnPlugin = require("webpack-cdn-plugin");
 
-const webRoot='/against-covid19';
+const webRoot='';
 
 const webpackConfig = merge(baseConfig, {
 	mode: 'production',

@@ -50,6 +50,9 @@ $clinic-list-namespace: "pageClinicList";
       width: 100%;
     }
 
+    .supplyType-item {
+      text-transform: capitalize;
+    }
   }
 
   .listWrapper {
