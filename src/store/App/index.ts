@@ -24,7 +24,6 @@ export const initialAppState: AppState =
 
 const AppReducer: Reducer<AppState> = (state: AppState, act) =>
 {
-	console.log('Dispatched action: ' + act.type);
 	if (isActionType(act, Actions.ToggleAppLoadingAction)) {
 		return {...state, loading: act.loading};
 	} else if (isActionType(act, Actions.UpdateDataSourcesAction)) {
