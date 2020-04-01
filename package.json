@@ -67,8 +67,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "deploy:gh": "gh-pages -d wwwroot/dist",
+    "deploy:gh": "./scripts/deploy-gh.sh",
     "dev": "./scripts/dev.sh",
+    "build:deploy": "./scripts/build-deploy.sh",
     "build": "rm -rf ./wwwroot/dist/** && ./node_modules/.bin/webpack --config ./config/webpack.prod.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

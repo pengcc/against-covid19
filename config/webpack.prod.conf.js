@@ -4,8 +4,21 @@ const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require("./webpack.base.conf");
 const WebpackCdnPlugin = require("webpack-cdn-plugin");
+const exec = require('child_process').exec;
 
-const webRoot='';
+const { NODE_OPT } = process.env;
+const SHOULD_TRIGGER_POST_BUILD = NODE_OPT && NODE_OPT === 'deploy';
+
+const POST_BUILD = {
+	apply: (compiler) => {
+		compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
+			exec(path.resolve(__dirname, '..', 'scripts/deploy-gh.sh'), (err, stdout, stderr) => {
+				if (stdout) process.stdout.write(stdout);
+				if (stderr) process.stderr.write(stderr);
+			});
+		});
+	}
+};
 
 const webpackConfig = merge(baseConfig, {
 	mode: 'production',
@@ -13,7 +26,7 @@ const webpackConfig = merge(baseConfig, {
 		path: path.resolve(__dirname, '..', 'wwwroot/dist'),
 		filename: './static/js/app.bundle.[hash].js',
 		chunkFilename: './static/js/[id].[chunkhash].js',
-		publicPath: process.env.PUBLIC_URL ? process.env.PUBLIC_URL : webRoot,
+		publicPath: process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '',
 	},
 	plugins: [
 		...baseConfig.plugins,
@@ -47,5 +60,9 @@ const webpackConfig = merge(baseConfig, {
 		},
 	},
 });
+
+if (SHOULD_TRIGGER_POST_BUILD) {
+	webpackConfig.plugins.push(POST_BUILD);
+}
 
 module.exports = webpackConfig;
