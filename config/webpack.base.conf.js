@@ -6,15 +6,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const tsImportPluginFactory = require('ts-import-plugin')
 
-const DEV = process.env.NODE_ENV === "development";
+const { NODE_ENV } = process.env;
+const IS_DEV = NODE_ENV && NODE_ENV === "development";
 
 function resolve(dir)
 {
 	return path.join(__dirname, '..', dir)
 }
 
-module.exports = {
-	entry: DEV ? {
+const webpackBaseConfig= {
+	entry: IS_DEV ? {
 		'app': [
 			'webpack-dev-server/client?http://localhost:3001',
 			path.resolve(__dirname, '..', 'src/boot-client.tsx'),
@@ -22,17 +23,17 @@ module.exports = {
 	} : {
 			'app': path.resolve(__dirname, '..', 'src/boot-client.tsx'),
 		},
-	mode: DEV ? 'development' : 'production',
+	mode: IS_DEV ? 'development' : 'production',
 
 	output: {
 		path: path.resolve(__dirname, '..', 'wwwroot/dist'),
-		// filename: DEV ? 'app.bundle.js' : 'app.[hash].js'
-		filename: DEV ? 'app.bundle.js' : 'app.js',
+		// filename: IS_DEV ? 'app.bundle.js' : 'app.[hash].js'
+		filename: IS_DEV ? 'app.bundle.js' : 'app.js',
 		publicPath: '/',
 	},
 
 	// Enable sourcemaps for debugging webpack's output.
-	devtool: DEV ? 'inline-eval-cheap-source-map' : "source-map",
+	devtool: IS_DEV ? 'inline-eval-cheap-source-map' : "source-map",
 
 	optimization: {
 		splitChunks: {
@@ -43,7 +44,7 @@ module.exports = {
 					enforce: true,
 					test: /node_modules/,
 					name: 'vendor',
-					filename: DEV ? '[name].bundle.js' : '[name].[hash].js',
+					filename: IS_DEV ? '[name].bundle.js' : '[name].[hash].js',
 					priority: -10
 				},
 			}
@@ -82,7 +83,7 @@ module.exports = {
 						loader: "ts-loader",
 						options: {
 							silent: true,
-							transpileOnly: !DEV,
+							transpileOnly: !IS_DEV,
 							getCustomTransformers: () => ({
 								before: [tsImportPluginFactory({
 									libraryName: 'antd',
@@ -110,13 +111,13 @@ module.exports = {
 									modules: {
 										localIdentName: '[path][name]__[local]--[hash:base64:5]',
 									},
-									sourceMap: DEV,
+									sourceMap: IS_DEV,
 								}
 							},
 							{
 								loader: "sass-loader",
 								options: {
-									sourceMap: DEV,
+									sourceMap: IS_DEV,
 								}
 							},
 						]
@@ -127,13 +128,13 @@ module.exports = {
 							{
 								loader: "css-loader",
 								options: {
-									sourceMap: DEV,
+									sourceMap: IS_DEV,
 								}
 							},
 							{
 								loader: "sass-loader",
 								options: {
-									sourceMap: DEV,
+									sourceMap: IS_DEV,
 								}
 							},
 						],
@@ -165,7 +166,12 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, '..', 'wwwroot/template.html'),
-		}),
-		new BundleAnalyzerPlugin(),
+		})
 	]
 };
+
+if (IS_DEV) {
+	webpackBaseConfig.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports = webpackBaseConfig;
