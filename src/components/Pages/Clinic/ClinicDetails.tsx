@@ -173,7 +173,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
                 </Col>
               </Row>
               <Row className={styles.buttonList}>
-                  {this.renderButtonRow()}
+                  {false && this.renderButtonRow()}
               </Row>
             </div>
 					</div>}
