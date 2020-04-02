@@ -30,6 +30,10 @@ const en_US: ILocalization = {
 
   VIEW_DETAIL: 'View details',
 
+  HOME: 'Home',
+  REQUEST: 'Request',
+  SUPPLIER: 'Supplier',
+  ABOUT: 'About',
 
   CONTACT_METHODS: 'Contact',
   COPIED_TO_CLIPBOARD: 'Copied',
@@ -55,7 +59,6 @@ const en_US: ILocalization = {
 
   GREEN_CHANNEL: '绿色通道',
 
-  HOME: '首页',
   HOME_CONTRIBUTE_TITLE: '贡献力量',
   HOME_HOTEL_TITLE: '住宿帮助',
   HOME_OVERVIEW_TITLE: '疫情概况',

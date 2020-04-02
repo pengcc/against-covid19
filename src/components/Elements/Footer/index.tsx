@@ -10,19 +10,22 @@ import { IconMainIconWhite } from '../../../components/Icons';
 interface Props extends RouteComponentProps {}
 class Footer extends React.PureComponent<Props, {}> {
   render() {
-    const items: any[] = [
-      {
-        name: Message('CLINIC'),
-        link: URLS.CLINICS,
-      },
-    ];
+    const itemsArray: any[] = ['home', 'request', 'supplier', 'about'];
+    const menuItems: any[] = itemsArray.map(item => {
+      let itemKey = item.toUpperCase();
+      return { 
+        name: Message(itemKey),
+        link: URLS[itemKey]
+      };
+    });
+    
     return (
       <div className={styles.elementsFooter}>
         <Row type="flex" justify="space-between" style={{ width: '100%' }}>
           <IconMainIconWhite width={100} height={100} />
           <div className={styles.siteMap}>
             <Row className={styles.siteMapItemWrapper} type="flex">
-              {items.map((item, index) => {
+              {menuItems.map((item, index) => {
                 return (
                   <span
                     style={{ flex: '0 0 auto', color: '#ffffff', cursor: 'pointer', margin: 10 }}

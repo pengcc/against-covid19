@@ -1,0 +1,13 @@
+@import '../../colors';
+@import '../../fonts';
+@import '../../media';
+
+$page-namespace: "pageRequest";
+
+.#{$page-namespace} {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(F30-b, $red4);
+}
