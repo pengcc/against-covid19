@@ -53,7 +53,7 @@ yarn build
 
 ## Deploy, CI/CD
 
-TBD - maybe we only need to add some deploy scripts, CI/CD seems to be a bit too much if this is not a long term project.
+When a new pull request is merged into branch develop, that will trigger githup actions to deploy the changes on github pages, which hosts this project app.
 
 # Tech Stack
 
@@ -123,22 +123,13 @@ Please check out [this doc](https://www.figma.com/file/6oLZ4Swo2He0w8DUNELsUV/wu
 
 # Road Map
 
-Before Backend is fully ready/supported:
+Project data is stored on google firebase:
 
-- [ ] Display/Visualize data for
+- [ ] Display data for
   - [ ] Clinics
-  - [ ] Hotels
-  - [ ] Donates
-  - [ ] Logistics
-  - [ ] Consultation
-  - [ ] Production
-- [ ] Page Sharing?
 - [ ] Homepage
-  - But we dont have that much data yet??
-
-After Back is fully ready/supported
-- [ ] Consider migrate to Rxjs - low priority
-- [ ] Update all `GET` request for the above pages
-- [ ] Support any `POST/DELETE` requests
+- [ ] Request
+- [ ] Supplier
+- [ ] About
 
 
