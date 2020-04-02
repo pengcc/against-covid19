@@ -6,6 +6,9 @@
 $bannerNamespace: 'bannerBlock';
 
 .#{$bannerNamespace} {
+    display: flex;
+    flex-direction: column;
+
     .bannerImage {
         position: relative;
         height: 270px;
@@ -19,5 +22,20 @@ $bannerNamespace: 'bannerBlock';
         text-align: center;
         padding: 2px 10px;
         @include font(F24-b);
+    }
+
+    @include apply-from(tablet) {
+        flex-direction: row;
+        justify-content: center;
+
+        .bannerImage {
+            flex: 0 0 30%;
+        }
+
+        .slogan {
+            flex: 0 0 40%;
+            display: flex;
+            align-items: center;
+        }
     }
 }

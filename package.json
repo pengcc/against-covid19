@@ -69,6 +69,7 @@
   "scripts": {
     "deploy:gh": "./scripts/deploy-gh.sh",
     "dev": "./scripts/dev.sh",
+    "dev:analyse": "./scripts/dev.sh analyse",
     "build:deploy": "./scripts/build-deploy.sh",
     "build": "rm -rf ./wwwroot/dist/** && ./node_modules/.bin/webpack --config ./config/webpack.prod.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"

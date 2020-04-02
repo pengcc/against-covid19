@@ -20,9 +20,55 @@ $nav-namespace: 'elementsNav';
     flex-direction: row;
     background: $white;
     height: 97px;
-    padding: 30px 20px;
+    justify-content: center;
+    padding: 30px 60px;
     z-index: 999;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
+
+    @include mobile-and-smaller() {
+      justify-content: center;
+      height: auto;
+      padding: 6px;
+    }
+
+    .left {
+      cursor: pointer;
+      flex: 0 0 130px;
+      height: 100%;
+    }
+    .right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex: 0 0 auto;
+
+      @include tablet-and-smaller() {
+        display: none;
+      }
+
+      button {
+        margin-left: 20px;
+      }
+    }
+
+    & .mobileMenu {
+      display: none;
+
+      @include tablet() {
+        display: block;
+      }
+      @include mobile-and-smaller() {
+        display: block;
+        position: absolute;
+        align-self: center;
+        right: 16px;
+      }
+      ul {
+        position: absolute;
+        width: 120px;
+        right: 0;
+      }
+    }
   }
 
   .logo {

@@ -6,8 +6,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const tsImportPluginFactory = require('ts-import-plugin')
 
-const { NODE_ENV } = process.env;
+const { NODE_ENV, NODE_ANALYSE } = process.env;
 const IS_DEV = NODE_ENV && NODE_ENV === "development";
+const IS_ANALYSE = NODE_ANALYSE && NODE_ANALYSE === "analyse";
 
 function resolve(dir)
 {
@@ -170,7 +171,7 @@ const webpackBaseConfig= {
 	]
 };
 
-if (IS_DEV) {
+if (IS_DEV && IS_ANALYSE) {
 	webpackBaseConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 
