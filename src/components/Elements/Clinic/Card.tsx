@@ -32,7 +32,7 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
   renderMoreSupplies = (length) => {
     return (
       length > 3 && 
-      <div className={`${styles.otherSupplies} ${styles.supplyRow}`}>+{length - 3 }{Message('OTHER_SUPPLIES')}</div>
+      <div className={`${styles.otherSupplies} ${styles.supplyRow}`}>+{length - 3 } {Message('OTHER_SUPPLIES')}</div>
     )
   }
 

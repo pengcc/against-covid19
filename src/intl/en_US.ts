@@ -39,6 +39,7 @@ const en_US: ILocalization = {
   COPIED_TO_CLIPBOARD: 'Copied',
   COPY: 'Copy',
   CLINIC: 'Hospital',
+  OTHER_SUPPLIES: 'more items',
 
   DEVELOPING: '紧急开发中',
   DIAL_PHONE: '点击拨号',
@@ -92,7 +93,7 @@ const en_US: ILocalization = {
   NONE: '暂无',
 
   OPEN_SOURCE_PROJ: '开源项目',
-  OTHER_SUPPLIES: ' 项其他物资',
+  
   OVERVIEW: '疫情简要',
   ONLINE_SERVICES: '在线客服',
   OFFICIAL_WEBSITE: '官网地址',
