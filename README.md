@@ -119,7 +119,7 @@ We are utilizing Ant Design for fast development at this stage. However, we migh
 
 ## Design Doc
 
-Please check out [this doc](https://www.figma.com/file/6oLZ4Swo2He0w8DUNELsUV/wuhan?node-id=268%3A28)
+Please check out [this doc](https://www.figma.com/file/qDw4fBBTk4ftiBUbf5Z4K6/Against-Covid-v1?node-id=106%3A991)
 
 # Road Map
 
