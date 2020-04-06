@@ -31,14 +31,15 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
 
   renderMoreSupplies = (length) => {
     return (
-      length > 3 && 
+      length > 3 ?
       <div className={`${styles.otherSupplies} ${styles.supplyRow}`}>+{length - 3 } {Message('OTHER_SUPPLIES')}</div>
+      : null
     )
   }
 
   getPublishedHours = (timestamp: string) => {return 'a few';};
 
-	render(){
+	render() {
     const {
       cardData: { 
         timestamp,
@@ -48,7 +49,9 @@ export default class ClinicCard extends React.PureComponent<ClinicCardProps, {}>
       }
     } = this.props;
 
-    const supplyArray = convertObjToArray({...supplyList});
+    const supplyArray = convertObjToArray({...supplyList}).
+                          filter((item) => item.amount && item.amount.trim().length > 0);
+                          
     const supplyArrayLength = supplyArray.length;
 
     return (
