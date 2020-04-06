@@ -11,7 +11,7 @@ import { actionCreators as clinicsActionCreators, Actions as ClinicsActions } fr
 import { AppState } from "../../../store/App";
 import { IClinic } from "../../../types/interfaces";
 import Button from "../../Elements/Button";
-import { copyStringToClipboard } from "../../../utils/stringHelper";
+import { copyStringToClipboard, getCleanAmount } from "../../../utils/stringHelper";
 import { IntlShape, injectIntl } from "react-intl";
 import { GAODE_SEARCH_PREFIX } from "../../../constants/globals";
 import { isMobile, isTablet } from "../../../utils/deviceHelper";
@@ -64,7 +64,7 @@ class ClinicDetails extends React.PureComponent<Props, {}>
         dataIndex: 'amount',
         key: 'amount',
         className: styles.tHeaderAmount,
-        render: text => <span className={styles.amount}>{text}</span>
+        render: text => <span className={styles.amount}>{getCleanAmount(text)}</span>
       },
     ]
   }
@@ -113,7 +113,8 @@ class ClinicDetails extends React.PureComponent<Props, {}>
 	render()
 	{
     const {clinic} = this.props;
-    const supplyArray = convertObjToArray({...clinic?.supplyList});
+    const supplyArray = convertObjToArray({...clinic?.supplyList}).
+                          filter((item) => item.amount && item.amount.trim().length > 0);
 		return (
 			<Layout style={{backgroundColor: '#fff', flex: '1 0 auto', minHeight: 'unset'}}>
 				<Content>
